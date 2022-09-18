@@ -17,6 +17,7 @@ function createDomfromVdom(vdom) {
     //如果传入的虚拟节点类型为字符串
     if (typeof vdom === 'string') {
         node = document.createTextNode(vdom);
+        return node;
     }
     //如果传入的虚拟节点类型为对象(意味着包含子节点)
     if (typeof vdom === 'object') {
@@ -34,7 +35,7 @@ function createDomfromVdom(vdom) {
             //设置节点属性
             setAttribute(node, vdom.attrs);
             //遍历虚拟dom的子节点并全部转换为html节点
-            vdom.children.forEach(childVdom => render(childVdom, node));
+            vdom.children.forEach(childVdom => renderVdom(childVdom, node));
         }
 
     }
